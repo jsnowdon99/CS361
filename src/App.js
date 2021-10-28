@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import { Beers } from "./components/Beers";
+import { BeerForm } from './components/BeerForm';
+import { Container } from 'semantic-ui-react';
 
 function App() {
+  const [beers, setBeers] = useState([]);
+
+  useEffect(() => {
+    fetch('/mybeers').then(response => 
+      response.json().then(data => {
+        setBeers(data.beers);
+      })
+    );
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{marginTop:40, width: 800}}>
+      <Container>
+        <Beers beers={beers}/>
+        <BeerForm newBeer={beer=> setBeers(currentBeers => [...currentBeers, beer])}/>
+      </Container>
     </div>
   );
 }
