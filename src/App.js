@@ -1,13 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
-import { Beers } from "./components/Beers";
-import { BeerForm } from './components/BeerForm';
-import { Container } from 'semantic-ui-react';
 import LoginPage from './components/LoginPage';
 
 import BeerPage from './components/BeerPage';
-import { BrowserRouter, Route, Switch, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 function App() {

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import BeerPage from "../components/BeerPage";
 import axios from 'axios';
+import { Container } from 'semantic-ui-react';
+
 const flowIDs = []
 const LoginPage = () => {
     const [email, setEmail] = useState('')
     const [userID, setID] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState(null)
+    // const [error, setError] = useState(null)
     const navigate = useNavigate();
     const loginSuccess = () => navigate('/beers')
     const addEmail = () => {
@@ -47,7 +48,7 @@ const LoginPage = () => {
             }).then(response => {
                 console.log('response >>> ', response);
                 
-                if (response.data.authenticated == true) {
+                if (response.data.authenticated === true) {
                     loginSuccess()
                 }
             }).catch(error => {
@@ -57,8 +58,9 @@ const LoginPage = () => {
     
 
     return (
-        <div>
-            If you are a first time user, please enter your email:
+        <div class="row justify-content-md-center" style={{marginTop:40}}>
+            <Container class="col-md-auto">
+                If you are a first time user, please enter your email:
                 <div>
                     Email: <br/>
                     <input type="text"
@@ -69,7 +71,7 @@ const LoginPage = () => {
                 <div><input type="button"
                     value="Join"
                     onClick={addEmail}/></div>
-                <br/>
+                <br/><br/><br/>
                 <div>
                     Existing members, please use your ID: <br/>
                     <input type="number"
@@ -80,19 +82,21 @@ const LoginPage = () => {
                 <input type="button"
                     value="Get my one time password"
                     onClick={attemptLogin}/>
+                    <br/>
                 <div>
                     Enter your one time password:<br/>
                     <input type="password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}/>
                 </div>
-                <div><br/></div>
-                {error && <div className="error">{error}</div>}
+                <div></div>
+                {/* {error && <div className="error">{error}</div>} */}
                 <div>
                     <input type="button"
                     value="Login"
                     onClick={confirmPassword}/>
                 </div>
+                </Container>
             </div>
         
     

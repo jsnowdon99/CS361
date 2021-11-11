@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Input, Rating, StepTitle } from "semantic-ui-react";
+import { Button, Form, Input, Rating } from "semantic-ui-react";
 
 export const BeerForm = ({newBeer}) => {
     const [name, setName] = useState('');

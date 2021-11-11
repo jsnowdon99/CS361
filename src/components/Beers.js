@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Header, Rating, Image } from "semantic-ui-react"
+import { List, Rating, Image } from "semantic-ui-react"
 import Generic from '../generic.jpg'
 
 export const Beers = ({ beers }) => {
