@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import BeerPage from "../components/BeerPage";
 import axios from 'axios';
-
+const flowIDs = []
 const LoginPage = () => {
     const [email, setEmail] = useState('')
     const [userID, setID] = useState('')
@@ -10,7 +10,6 @@ const LoginPage = () => {
     const [error, setError] = useState(null)
     const navigate = useNavigate();
     const loginSuccess = () => navigate('/beers')
-    const flowIDs = []
     const addEmail = () => {
         // alert("Please check your email");
 
@@ -42,7 +41,8 @@ const LoginPage = () => {
     }
     
     const confirmPassword = () => {
-        axios.put('https://concise-bloom-327806.wl.r.appspot.com/2fa/flow/', {
+        let flow_id = flowIDs.pop()
+        axios.put('https://concise-bloom-327806.wl.r.appspot.com/2fa/flow/' + flow_id, {
             code: parseInt(password),
             }).then(response => {
                 console.log('response >>> ', response);
