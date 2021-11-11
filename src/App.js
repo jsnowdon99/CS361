@@ -4,24 +4,22 @@ import { useEffect, useState } from 'react';
 import { Beers } from "./components/Beers";
 import { BeerForm } from './components/BeerForm';
 import { Container } from 'semantic-ui-react';
+import LoginPage from './components/LoginPage';
+
+import BeerPage from './components/BeerPage';
+import { BrowserRouter, Route, Switch, Routes } from 'react-router-dom';
+
 
 function App() {
-  const [beers, setBeers] = useState([]);
-
-  useEffect(() => {
-    fetch('/mybeers').then(response => 
-      response.json().then(data => {
-        setBeers(data.beers);
-      })
-    );
-  }, []);
-
-  return (
-    <div className="App" style={{marginTop:40, width: 800}}>
-      <Container>
-        <Beers beers={beers}/>
-        <BeerForm newBeer={beer=> setBeers(currentBeers => [...currentBeers, beer])}/>
-      </Container>
+  return(
+    <div className="wrapper">
+      
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={ <LoginPage />}/>
+          <Route exact path="/beers" element={ <BeerPage />}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

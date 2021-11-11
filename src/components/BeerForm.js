@@ -20,17 +20,20 @@ export const BeerForm = ({newBeer}) => {
             </Form.Field>
             <Form.Field>
                 <Button onClick={async () => {
-                    const beer = {name, rating};
-                    const response = await fetch('/mybeer', {
+                    const beer = { name, rating };
+                    const response = await fetch('/mybeers', {
                         method: 'POST',
                         headers: {
-                            'Content-Type':'application/json'
+                            "Content-Type":"application/json"
                         },
                         body:JSON.stringify(beer)
-                    });
+                    })
+                    console.log(response)
+                    if (response.ok) {
                     newBeer(beer)
                     setName("");
                     setRating(1);
+                    }
                 }}>
                     Submit Beer
                 </Button>
