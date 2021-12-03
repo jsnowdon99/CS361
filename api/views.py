@@ -25,3 +25,13 @@ def beer_ratings():
         db.session.commit()
 
         return "Done", 201
+
+@main.route('/mybeers/<name>', methods = ["DELETE"])
+def delete_beer(name):
+    beer = Beer.query.filter_by(name = name).first()
+    if beer:
+        print(beer.name)
+        db.session.delete(beer)
+        db.session.commit()
+        return "Done", 201
+    return "Not found", 404
