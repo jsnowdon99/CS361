@@ -3,6 +3,7 @@ import { Button, Form, Input, Rating } from "semantic-ui-react";
 
 export const BeerForm = ({newBeer}) => {
     const [name, setName] = useState('');
+    const [notes, setNotes] = useState('');
     const [rating, setRating] = useState(1);
 
     return (
@@ -12,7 +13,11 @@ export const BeerForm = ({newBeer}) => {
                 onChange={e => setName(e.target.value)}/>
             </Form.Field>
             <Form.Field>
-                <Rating icon='star' value={rating} maxRating={5} 
+                <Input placeholder='Any notes?...' value={notes} 
+                onChange={e => setNotes(e.target.value)}/>
+            </Form.Field>
+            <Form.Field>
+                <Rating icon='star' value={rating} maxRating={10} 
                 onRate={(_, data) => {
                     setRating(data.rating)
                 }}
@@ -20,7 +25,7 @@ export const BeerForm = ({newBeer}) => {
             </Form.Field>
             <Form.Field>
                 <Button onClick={async () => {
-                    const beer = { name, rating };
+                    const beer = { name, rating, notes };
                     if (name == ""){
                         return window.alert('Please enter a beer to rate.')
                     }
