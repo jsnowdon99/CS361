@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import { Beers } from "../components/Beers";
 import { BeerForm } from '../components/BeerForm';
-import { Container } from 'semantic-ui-react';
+import { Container, Header, Image } from 'semantic-ui-react';
+import Generic from '../generic.jpg'
 
 export default function BeerPage() {
   
@@ -18,12 +19,7 @@ export default function BeerPage() {
 
   return (
     <div id="parent">
-      <div class="row justify-content-md-center" style={{marginTop:40}}>
-        <Container class="col-md-auto">
-            <h1 style= {{font: "900 45px Montserrat"}} >Welcome to the Beer Ratings Platform</h1>
-            <h1>Enter your email:</h1>
-        </Container>
-      </div>
+      <Header as="h1" textAlign='center'>My Beers</Header>
       <div class="row" className="App" style={{marginTop:40, display: 'flex', justifyContent: 'center'}}>
         <Container class="col-lg-1 col-centered">
           <Beers beers={beers}/>

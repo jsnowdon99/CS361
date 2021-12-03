@@ -6,7 +6,7 @@ export const BeerForm = ({newBeer}) => {
     const [rating, setRating] = useState(1);
 
     return (
-        <Form>
+        <Form className="ui form">
             <Form.Field>
                 <Input placeholder='Enter a beer to rate...' value={name} 
                 onChange={e => setName(e.target.value)}/>
@@ -21,6 +21,9 @@ export const BeerForm = ({newBeer}) => {
             <Form.Field>
                 <Button onClick={async () => {
                     const beer = { name, rating };
+                    if (name == ""){
+                        return window.alert('Please enter a beer to rate.')
+                    }
                     const response = await fetch('/mybeers', {
                         method: 'POST',
                         headers: {

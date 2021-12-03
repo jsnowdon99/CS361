@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Container } from 'semantic-ui-react';
+import { Image, Header, Button, Container, Form, Grid, GridColumn, Segment } from 'semantic-ui-react';
+import Generic from '../generic.jpg'
+import '../index.css';
 
 const flowIDs = []
 const LoginPage = () => {
     const [email, setEmail] = useState('')
     const [userID, setID] = useState('')
     const [password, setPassword] = useState('')
-    // const [error, setError] = useState(null)
     const navigate = useNavigate();
     const loginSuccess = () => navigate('/beers')
     const addEmail = () => {
-        // alert("Please check your email");
 
         axios.post('https://concise-bloom-327806.wl.r.appspot.com/2fa', {
             email: email,
@@ -58,48 +58,47 @@ const LoginPage = () => {
     
 
     return (
-        <div class="row justify-content-md-center" style={{marginTop:40}}>
-            <Container class="col-md-auto">
-                If you are a first time user, please enter your email:
-                <div>
-                    Email: <br/>
-                    <input type="text"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}/>
-                
-                </div>
-                <div><input type="button"
-                    value="Join"
-                    onClick={addEmail}/></div>
-                <br/><br/><br/>
-                <div>
-                    Existing members, please use your ID: <br/>
-                    <input type="number"
-                    value={userID}
-                    onChange={e => setID(e.target.value)}/>
-                
-                </div>
-                <input type="button"
-                    value="Get my one time password"
-                    onClick={attemptLogin}/>
-                    <br/>
-                <div>
-                    Enter your one time password:<br/>
-                    <input type="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}/>
-                </div>
-                <div></div>
-                {/* {error && <div className="error">{error}</div>} */}
-                <div>
-                    <input type="button"
-                    value="Login"
-                    onClick={confirmPassword}/>
-                </div>
-                </Container>
-            </div>
-        
-    
+        <Segment className="bg">
+            <Header as="h1"><Image circular src={ Generic } alt="Logo"/>Welcome to the Beer Ratings Database
+
+            </Header>
+            <Grid centered>
+                <GridColumn style={{maxWidth: 350, top:50}}>
+                    <Form>
+                        <Form.Input
+                            label="If you are a first time user, please enter your email: "
+                            placeholder= "Email:" 
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            
+                        />
+                        <Button primary size="tiny" type = 'submit'
+                            value="Join"
+                            onClick={addEmail}>Submit
+                        </Button>
+                        <Form.Input
+                                label = "Existing members, please use your ID: "
+                                placeholder= "ID:" 
+                                value={userID}
+                                onChange={e => setID(e.target.value)}
+                        />
+                        <Button primary size="tiny"type = 'submit'
+                            onClick={attemptLogin}>Get one time password
+                        </Button>
+                        <Form.Input
+                                label = "Enter your one time password: "
+                                placeholder="password"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                        />
+                        <Button primary size="tiny" type='submit'
+                            value="Login"
+                            onClick={confirmPassword}>Login
+                        </Button>
+                    </Form>
+                </GridColumn>
+            </Grid>
+        </Segment>
     )
 }
 
