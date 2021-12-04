@@ -26,7 +26,7 @@ export const BeerForm = ({newBeer}) => {
             <Form.Field>
                 <Button onClick={async () => {
                     const beer = { name, rating, notes };
-                    if (name == ""){
+                    if (name === ""){
                         return window.alert('Please enter a beer to rate.')
                     }
                     const response = await fetch('/mybeers', {
@@ -40,6 +40,7 @@ export const BeerForm = ({newBeer}) => {
                     if (response.ok) {
                     newBeer(beer)
                     setName("");
+                    setNotes("");
                     setRating(1);
                     }
                 }}>

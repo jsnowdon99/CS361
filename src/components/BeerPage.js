@@ -19,7 +19,7 @@ export default function BeerPage() {
 
   return (
     <div id="parent">
-      <Header as="h1" textAlign='center'>My Beers</Header>
+      <Header as="h1" textAlign='center' style={{marginTop:40}}>My Beers</Header >
       <div class="row" className="App" style={{marginTop:40, display: 'flex', justifyContent: 'center'}}>
         <Container class="col-lg-1 col-centered">
           <Beers beers={beers}/>
