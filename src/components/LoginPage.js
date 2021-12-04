@@ -12,6 +12,7 @@ const LoginPage = () => {
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
     const loginSuccess = () => navigate('/beers')
+    
     const addEmail = () => {
 
         axios.post('https://concise-bloom-327806.wl.r.appspot.com/2fa', {
@@ -23,6 +24,7 @@ const LoginPage = () => {
             }).catch(error => {
                 alert("This email is already associated with an account")
             });
+            setEmail("")
     }
 
     const attemptLogin = () => {
@@ -39,6 +41,7 @@ const LoginPage = () => {
                 console.log(error)
                 alert("This is not a valid ID")
             });
+            setID("")
     }
     
     const confirmPassword = () => {
@@ -54,6 +57,7 @@ const LoginPage = () => {
             }).catch(error => {
                 alert("This is not a valid code")
             });
+            setPassword("")
     }
     
 
