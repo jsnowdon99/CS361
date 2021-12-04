@@ -5,10 +5,6 @@ from .models import Beer
 
 main = Blueprint('main', __name__)
 
-@main.route('/', methods = ["GET"])
-def home():
-    return jsonify({"Hello":"World"})
-
 
 @main.route('/mybeers', methods = ["GET", "POST"])
 def beer_ratings():
@@ -16,11 +12,12 @@ def beer_ratings():
         beer_list = Beer.query.all()
         beers = []
         for beer in beer_list:
-            beers.append({'name' : beer.name, 'rating' : beer.rating})
+            beers.append({'name' : beer.name, 'rating' : beer.rating, 'notes': beer.notes})
         return jsonify({"beers": beers})
     else:
         beer_ratings = request.get_json()
-        new_beer = Beer(name=beer_ratings['name'], rating=beer_ratings['rating'])
+        print(beer_ratings)
+        new_beer = Beer(name=beer_ratings['name'], rating=beer_ratings['rating'], notes=beer_ratings['notes'])
         db.session.add(new_beer)
         db.session.commit()
 
